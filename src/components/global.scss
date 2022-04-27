@@ -1,0 +1,104 @@
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: "";
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation: $animations;
+    -o-animation: $animations;
+    animation: $animations;
+}
+
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@include keyframes(scale) {
+    100% {
+        -webkit-clip-path: polygon(45vw 40vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+        clip-path: polygon(45vw 40vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+    }
+}
+
+@include keyframes(hide) {
+    100% {
+        fill: transparent;
+    }
+}
+
+@include keyframes(off) {
+    70% {
+        opacity: 0;
+    }
+    100% {
+        z-index: -10;
+    }
+}
+
+@include keyframes(on) {
+    100% {
+        opacity: 1;
+    }
+}
+
+@include keyframes(scale) {
+    100% {
+        -webkit-clip-path: polygon(45vw 40vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+        clip-path: polygon(45vw 40vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+    }
+}
+
+.container {
+    position: relative;
+    outline: 0px;
+    margin: auto;
+    display: flex;
+    -webkit-box-pack: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background-color: rgb(231, 235, 240);
+}
+.splash {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    @include animation("off 1s ease-in 2s forwards");
+
+    img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        opacity: 0;
+
+        @include animation("on .5s ease-in .5s forwards");
+    }
+}
