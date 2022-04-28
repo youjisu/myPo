@@ -1,44 +1,31 @@
 import './components/global.scss';
 import './App.css';
-import './firebase';
-import PostCard from './components/card/card'
-import { getDatabase, ref, onValue } from 'firebase/database';
-import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import Intro from './Intro';
+import History from './History';
+import NotFound from './NotFound';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const db = getDatabase();
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Sunflower',
+  }
+});
 
 const App = () => {
-  const [list, setList] = useState(null);
-
-  useEffect(() => {
-    onValue(ref(db, 'board'), (snapshot) => {
-      setList(snapshot.val());
-      console.log(snapshot.val());
-    }, {
-      onlyOnce: true
-    });
-  }, []);
-
   return (
     <>
-      <div className="container">
-        {list && Object.values(list).map((post, idx) => {
-          console.log(idx);
-          return (
-            <div style={{ display: 'contents' }} key={idx}>
-              <PostCard
-                key={idx}
-                title={post.title}
-                date={post.date}
-                img={post.img}
-                prevTitle={post.prevTitle}
-                prevContent={post.prevContent.split('\\n').map((txt) => (<>{txt}<br /></>))}
-                mainContent={post.mainContent.split('\\n').map((txt) => (<>{txt}<br /></>))}
-              />
-            </div>
-          )
-        })}
-      </div>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Intro />}></Route>
+            <Route path="/history/*" element={<History />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </>
   );
 }

@@ -9,6 +9,18 @@
   font-weight: normal;
   src: url("./fonts/Dongle/Dongle-Regular.ttf") format("woff"), url("./fonts/Dongle/Dongle-Regular.ttf") format("woff2");
 }
+@font-face {
+  font-family: "Gamja";
+  font-weight: normal;
+  src: url("./fonts/Gamja_Flower/GamjaFlower-Regular.ttf") format("woff"),
+    url("./fonts/Gamja_Flower/GamjaFlower-Regular.ttf") format("woff2");
+}
+@font-face {
+  font-family: "Sunflower";
+  font-weight: normal;
+  src: url("./fonts/Sunflower/Sunflower-Medium.ttf") format("woff"),
+    url("./fonts/Sunflower/Sunflower-Medium.ttf") format("woff2");
+}
 
 body {
   font-size: 70%;
