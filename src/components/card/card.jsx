@@ -57,7 +57,7 @@ const RecipeReviewCard = ({ img, title, date, prevTitle, prevContent, mainConten
                 />
                 <CardMedia
                     component="img"
-                    image={img}
+                    image={require(`${img}`)}
                     height="250"
                     alt="Paella dish"
                     sx={{ clipPath: 'polygon(0px 0px, 100% 0%, 100% 75%, 0% 100%)' }}
@@ -97,7 +97,6 @@ const RecipeReviewCard = ({ img, title, date, prevTitle, prevContent, mainConten
     );
 }
 RecipeReviewCard.defaultProps = {
-    img: 'https://images.unsplash.com/photo-1517147177326-b37599372b73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2229&q=80',
     title: '몰?루',
     date: (new Date()).toISOString().substring(0, 10),
     prevTitle: '키득키득',
