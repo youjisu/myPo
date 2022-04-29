@@ -8,9 +8,7 @@ import NotFound from './NotFound';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  typography: {
-    fontFamily: 'Sunflower',
-  }
+  typography: {}
 });
 
 const App = () => {
